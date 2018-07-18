@@ -1,0 +1,2 @@
+class FourChoiceQuestion < ApplicationRecord
+end
