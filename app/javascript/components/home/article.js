@@ -28,7 +28,7 @@ const Main = styled.div`
 	height: 100%;
 `
 const Search = styled.div`
-	width: 100%;
+	width: 86%;
 	height: 50px;
 	background-color: white;
 `

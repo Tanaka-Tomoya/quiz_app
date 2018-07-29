@@ -1,28 +1,33 @@
 import React from 'react'
 import AnswerField from './answerField'
 import styled from 'styled-components'
+import Grid from '@material-ui/core/Grid';
 
 export default class AnswerPage extends React.Component {
+
 	componentWillMount() {
 		const num = this.props.match.params.id
 		this.props.getQuestion(num);
 	}
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps.answerItem)
+		// console.log(nextProps.answerItem)
 	}
 	componentWillUpdate(nextProps, nextState){
 	}
 
   render() {
     return (
-			<div>
-				<AnswerField question={this.props.answerItem}/>
-			</div>
+			<Grid item xs={12}>
+				<Container  item xs={8}>
+					<AnswerField question={this.props.answerItem} answer={this.props.form.AnswerField}/>
+				</Container>
+			</Grid>
 			)
   }
 }
 
-const Container = styled.div`
+const Container = styled(Grid)`
+	background-color: white;
 `
 // const id = parseInt(params.id,10)
 //

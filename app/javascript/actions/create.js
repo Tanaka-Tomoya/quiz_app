@@ -5,6 +5,7 @@ function postQuestion() {
 }
 
 export function createQuestion(values) {
+  console.log(values)
   const obj = values;
   const method = "POST";
   const body = JSON.stringify(obj);

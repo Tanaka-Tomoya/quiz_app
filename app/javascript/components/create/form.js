@@ -15,19 +15,22 @@ class Form extends React.Component {
 		const {handleSubmit} = this.props
     return (
       <FormContainer>
+        <Typography variant="display3">作成</Typography>
         <FormContent onSubmit={handleSubmit}>
-          <Typography variant="headline" style={{lineHeight:"50px",height:"36px"}}>タイトル</Typography>
+          <Label variant="headline">タイトル</Label>
           <Field name="title" type="text" component={Text} label="Title"/>
-          <Typography variant="headline" style={{lineHeight:"50px",height:"36px"}}>選択肢</Typography>
+            <Label variant="headline">問題</Label>
+            <Field name="question" type="text" component={Text} label="Question"/>
+          <Label variant="headline">選択肢</Label>
   				<Field name="a" type="text" component={Text} label="A"/>
   				<Field name="b" type="text" component={Text} label="B"/>
   				<Field name="c" type="text" component={Text} label="C"/>
   				<Field name="d" type="text" component={Text} label="D"/>
-          <Typography variant="headline" style={{lineHeight:"50px",height:"36px"}}>答え</Typography>
+          <Label variant="headline">答え</Label>
           <Control>
             <InputLabel>Answer</InputLabel>
     				<SelectField
-              name="Answer"
+              name="answer"
               component={Select}
               label="Answer"
               >
@@ -56,16 +59,18 @@ const FormContainer = styled.div`
   height: 100%;
   width: 100%;
   background-color: white;
+  text-align: left;
 `
 const FormContent = styled.form`
   height: 800px;
   width: 95%;
   text-align: left;
-  padding-top: 30px;
+  padding: 30px 0 0 40px;
 `
 const SelectField = styled(Field)`
-  height: 40px;
+  height: 30px;
   width: 90%;
+  padding-top: 20px;
 `
 const Control = styled(FormControl)`
   width: 100%;
@@ -73,7 +78,9 @@ const Control = styled(FormControl)`
 `
 const Submit = styled.div`
   margin-top: 70px;
-  text-align: right;
+  padding-left: 5px;
 `
-const TitleField = styled.div`
+const Label = styled(Typography)`
+  line-height: 50px !important;
+  height: 36px;
 `

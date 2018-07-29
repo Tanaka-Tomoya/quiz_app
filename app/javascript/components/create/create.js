@@ -21,7 +21,7 @@ export default class Create extends React.Component {
   render() {
     return (
       <CreateMain item xs={12}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Form onSubmit={this.onSubmitEvent.bind(this)} />
         </Grid>
       </CreateMain>
