@@ -73,6 +73,7 @@ class AnswerField extends React.Component {
 						</Result>
 					}
 					<CloseButton>
+						<Button color="primary" size="large" variant="contained" onClick={this.handleModalClose}>閉じる</Button>
 						<Button href="/" color="primary" size="large"　variant="contained">一覧に戻る</Button>
 					</CloseButton>
 				</Modal>
