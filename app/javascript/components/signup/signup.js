@@ -13,15 +13,16 @@ class Signup extends React.Component {
 
 	handleSubmit() {
 		const { name, email, password, nickname } = this.state
-		const fb = new FormData()
-		fb.append('name', name)
-		fb.append('email', email)
-		fb.append('nickname', nickname)
-		fb.append('password', password)
+		const fd = new FormData()
+		fd.append('name', name)
+		fd.append('email', email)
+		fd.append('nickname', nickname)
+		fd.append('password', password)
+		console.log(fd.get('name'))
 		fetch('/api/auth', {
       method: 'POST',
       header: { 'Content-Type': 'application/json' },
-      body: fb
+      body: fd
     })
     .then(res => res.json())
     .then(json => {
@@ -30,6 +31,7 @@ class Signup extends React.Component {
     })
 	}
 	render() {
+		console.log(this.state)
 		const { isAuthenticated } = this.props
 		if (isAuthenticated) {
 			return <div>success</div>
