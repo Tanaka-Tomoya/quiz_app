@@ -8,6 +8,8 @@ import { BrowserRouter,Route } from 'react-router-dom'
 import Home from '../containers/home'
 import Create from '../containers/create'
 import AnswerPage from '../containers/answerPage'
+import Signup from '../containers/signup'
+import Signin from '../containers/signin'
 import styled from 'styled-components'
 
 let store = configureStore();
@@ -25,6 +27,8 @@ export default class App extends Component {
 							<Route exact path='/' component={Home} />
 					  	<Route exact path='/create' component={Create} />
 							<Route exact path='/answer/:id' component={AnswerPage} />
+							<Route exact path='/signup' component={Signup} />
+							<Route exact path='/signin' component={Signin} />
 						</MainGrid>
 					</BrowserRouter>
 				</Provider>

@@ -11,7 +11,6 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.1]
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
-      t.boolean  :allow_password_change, :default => false
 
       ## Rememberable
       t.datetime :remember_created_at
@@ -37,7 +36,6 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.1]
       ## User Info
       t.string :name
       t.string :nickname
-      t.string :image
       t.string :email
 
       ## Tokens
