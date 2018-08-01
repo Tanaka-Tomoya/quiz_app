@@ -12,6 +12,7 @@ class Signin extends React.Component {
 	handleSubmit() {
 		const { email, password } = this.state
 		this.props.authenticate(email, password);
+		// document.cookie = 'accessToken=this.props.auth.accessToken max-age=30'; 
 	}
 
 	render() {

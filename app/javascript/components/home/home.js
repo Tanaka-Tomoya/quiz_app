@@ -8,14 +8,17 @@ import Button from '@material-ui/core/Button';
 export default class Home extends Component {
 	componentWillMount() {
 	this.props.fetchQuestions();
-
 	}
 	componentDidMount() {
 	}
 	render() {
 		const { auth } = this.props
 		const { isAuthenticated } = auth
-		if ( isAuthenticated ) {
+		console.log(localStorage)
+		console.log(localStorage.client)
+		console.log(localStorage.accessToken)
+		console.log(localStorage.uid)
+		if ( localStorage.client && localStorage.accessToken && localStorage.uid  ) {
 			return (
 				<Container item xs={12}>
 					<Grid item xs={4} >

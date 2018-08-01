@@ -24,10 +24,9 @@ class Signup extends React.Component {
       header: { 'Content-Type': 'application/json' },
       body: fd
     })
-    .then(res => res.json())
-    .then(json => {
+    .then(res =>
+			res.json()).then(json => {
       console.log(json)
-      console.log(document.cookie)
 			this.props.history.push('/signin');
     })
 	}

@@ -5,10 +5,14 @@ import AppBar from '@material-ui/core/AppBar';
 import styled from 'styled-components'
 
 export default class Menu extends Component {
+	logout() {
+		this.props.signout();
+		location.reload();
+	}
 	render() {
 		const { auth } = this.props
 		const { isAuthenticated } = auth
-		if ( isAuthenticated ) {
+		if ( localStorage.client && localStorage.accessToken && localStorage.uid ) {
 			return (
 				<MenuBar color="inherit">
 					<Div>
@@ -22,14 +26,14 @@ export default class Menu extends Component {
 								Create
 							</Button>
 						</Link>
-						<Button onClick={this.props.signout}>Signout</Button>
+						<Button onClick={this.logout.bind(this)}>Signout</Button>
 					</Div>
 				</MenuBar>
 			)
 		} else {
 		return (
 			<div>
-				
+
 			</div>
 			)
 		}

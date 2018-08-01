@@ -17,6 +17,10 @@ export function authenticate(email, password) {
 			const client = response.headers['client']
 			const accessToken = response.headers['access-token']
 			const expiry = response.headers['expiry']
+			const storage = localStorage
+			storage.uid = response.headers['uid'];
+			storage.client = response.headers['client'];
+			storage.accessToken = response.headers['access-token'];
 			dispatch(successAuthentication(uid, client, accessToken, expiry))
 		}).catch(error => {
 			dispatch(failAuthentication())
@@ -37,6 +41,9 @@ export function signout() {
 			}
 		}).then(response => {
 			dispatch(doSignout())
+			localStorage.clear();
+		}).then(res =>{
+			location.reload();
 		}).catch(error => {
 			console.log(error)
 		})
