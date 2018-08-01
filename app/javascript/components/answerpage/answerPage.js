@@ -2,6 +2,8 @@ import React from 'react'
 import AnswerField from './answerField'
 import styled from 'styled-components'
 import Grid from '@material-ui/core/Grid';
+import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 
 export default class AnswerPage extends React.Component {
 
@@ -16,13 +18,33 @@ export default class AnswerPage extends React.Component {
 	}
 
   render() {
-    return (
-			<Grid item xs={12}>
-				<Container  item xs={8}>
-					<AnswerField question={this.props.answerItem} answer={this.props.form.AnswerField}/>
-				</Container>
-			</Grid>
+		const { auth } = this.props
+		const { isAuthenticated } = auth
+    if ( isAuthenticated ) {
+			return (
+				<Grid item xs={12}>
+					<Container  item xs={8}>
+						<AnswerField question={this.props.answerItem} answer={this.props.form.AnswerField}/>
+					</Container>
+				</Grid>
 			)
+		} else {
+		return (
+			<div>
+				<p>Please signin or signup </p>
+				<Link to="/signin">
+					<Button size="large">
+						signin
+					</Button>
+				</Link>
+				<Link to="/signup" >
+					<Button size="large">
+						signup
+					</Button>
+				</Link>
+			</div>
+			)
+		}
   }
 }
 

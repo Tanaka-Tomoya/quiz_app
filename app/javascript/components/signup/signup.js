@@ -28,6 +28,7 @@ class Signup extends React.Component {
     .then(json => {
       console.log(json)
       console.log(document.cookie)
+			this.props.history.push('/signin');
     })
 	}
 	render() {

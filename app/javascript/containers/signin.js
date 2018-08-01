@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		authenticate: () => { dispatch(authenticate()); }
+		authenticate: (email, password) => { dispatch(authenticate(email, password)); }
 	}
 }
 

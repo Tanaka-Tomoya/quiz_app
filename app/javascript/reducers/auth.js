@@ -25,7 +25,11 @@ export default function reducer(state = initialState, action = {}) {
 				state,
 				{
 					loading: false,
-					isAuthenticated: true
+					isAuthenticated: true,
+          uid: action.uid,
+          client: action.client,
+          accessToken: action.accessToken,
+          expiry: action.expiry
 				}
 			)
 		case FAILED:

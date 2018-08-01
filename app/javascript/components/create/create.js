@@ -3,7 +3,8 @@ import Form from './form';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import 'babel-polyfill';
-
+import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 
 export default class Create extends React.Component {
   onSubmitEvent(values) {
@@ -19,13 +20,33 @@ export default class Create extends React.Component {
     // this.props.history.push('/');
   }
   render() {
-    return (
-      <CreateMain item xs={12}>
-        <Grid item xs={6}>
-          <Form onSubmit={this.onSubmitEvent.bind(this)} />
-        </Grid>
-      </CreateMain>
-    );
+    const { auth } = this.props
+		const { isAuthenticated } = auth
+    if ( isAuthenticated ) {
+			return (
+        <CreateMain item xs={12}>
+          <Grid item xs={6}>
+            <Form onSubmit={this.onSubmitEvent.bind(this)} />
+          </Grid>
+        </CreateMain>
+			)
+		} else {
+		return (
+			<div>
+				<p>Please signin or signup </p>
+				<Link to="/signin">
+					<Button size="large">
+						signin
+					</Button>
+				</Link>
+				<Link to="/signup" >
+					<Button size="large">
+						signup
+					</Button>
+				</Link>
+			</div>
+			)
+		}
   }
 }
 

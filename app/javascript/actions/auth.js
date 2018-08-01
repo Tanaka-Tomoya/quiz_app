@@ -13,7 +13,11 @@ export function authenticate(email, password) {
 			method: 'POST',
 			data: { email, password }
 		}).then(response => {
-			dispatch(successAuthentication())
+			const uid = response.headers['uid']
+			const client = response.headers['client']
+			const accessToken = response.headers['access-token']
+			const expiry = response.headers['expiry']
+			dispatch(successAuthentication(uid, client, accessToken, expiry))
 		}).catch(error => {
 			dispatch(failAuthentication())
 		})
@@ -47,8 +51,8 @@ function startAuthentication() {
 	return { type: REQUEST }
 }
 
-function successAuthentication() {
-	return { type: RECEIVED }
+function successAuthentication(uid, client, accessToken, expiry) {
+	return { type: RECEIVED, uid, client, accessToken, expiry }
 }
 
 function failAuthentication() {

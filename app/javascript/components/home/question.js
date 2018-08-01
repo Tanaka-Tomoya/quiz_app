@@ -12,9 +12,7 @@ import logo from './logo.png'
 let a = 0
 export default function Question(question,i) {
   let id = true
-  // console.log(question.id)
   a += 1
-  console.log(a)
   if (a > 5){
     id = false
   }

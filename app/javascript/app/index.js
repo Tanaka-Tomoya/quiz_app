@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import Menu from '../components/general/menu'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { Provider } from 'react-redux';
-import configureStore from '../store';
 import Grid from '@material-ui/core/Grid';
+import { Provider } from 'react-redux';
+import styled from 'styled-components'
 import { BrowserRouter,Route } from 'react-router-dom'
+
+import configureStore from '../store';
 import Home from '../containers/home'
 import Create from '../containers/create'
 import AnswerPage from '../containers/answerPage'
 import Signup from '../containers/signup'
 import Signin from '../containers/signin'
-import styled from 'styled-components'
+import Menu from '../containers/menu'
 
 let store = configureStore();
 

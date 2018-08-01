@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 
 class Signin extends React.Component {
 	constructor(props) {
@@ -14,9 +15,10 @@ class Signin extends React.Component {
 	}
 
 	render() {
+		console.log(this.state)
 		const { isAuthenticated } = this.props
 		if (isAuthenticated) {
-			return <div><h1>success</h1></div>
+			return <Redirect to="/"/>
 		}
 		return (
 			<div>
