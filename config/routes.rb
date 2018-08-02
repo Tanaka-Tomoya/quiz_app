@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'create', to: 'home#create'
   get 'signup', to: 'home#signup'
   get 'signin', to: 'home#signin'
+  get 'information', to: 'home#information'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
       mount_devise_token_auth_for 'User', at: 'auth', controllers: {

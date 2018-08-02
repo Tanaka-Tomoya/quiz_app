@@ -8,6 +8,9 @@ import Button from '@material-ui/core/Button';
 export default class Home extends Component {
 	componentWillMount() {
 	this.props.fetchQuestions();
+	// if ( localStorage.client && localStorage.accessToken && localStorage.uid ) {
+	//
+	// 	}
 	}
 	componentDidMount() {
 	}
@@ -18,7 +21,7 @@ export default class Home extends Component {
 		console.log(localStorage.client)
 		console.log(localStorage.accessToken)
 		console.log(localStorage.uid)
-		if ( localStorage.client && localStorage.accessToken && localStorage.uid  ) {
+		if ( localStorage.client && localStorage.accessToken && localStorage.uid ) {
 			return (
 				<Container item xs={12}>
 					<Grid item xs={4} >
@@ -27,21 +30,7 @@ export default class Home extends Component {
 				</Container>
 			)
 		} else {
-		return (
-			<div>
-				<p>Please signin or signup </p>
-				<Link to="/signin">
-					<Button size="large">
-						signin
-					</Button>
-				</Link>
-				<Link to="/signup" >
-					<Button size="large">
-						signup
-					</Button>
-				</Link>
-			</div>
-			)
+		return <Redirect to="/information" />
 		}
 	}
 }

@@ -6,4 +6,12 @@ function mapStateToProps(state) {
 	const { isAuthenticated } = auth
 	return { isAuthenticated }
 }
-export default connect(mapStateToProps)(Signup)
+function mapDispatchToProps(dispatch) {
+	return {
+		signupAuthenticate: (name, email, nickname, password) => { dispatch(signupAuthenticate(name, email, nickname, password)); }
+	}
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps)(Signup)

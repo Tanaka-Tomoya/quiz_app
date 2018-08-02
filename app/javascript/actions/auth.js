@@ -4,6 +4,7 @@ export const REQUEST = 'REQUEST'
 export const RECEIVED = 'RECEIVED'
 export const FAILED = 'FAILED'
 export const SIGNOUT = 'SIGNOUT'
+export const ISLOGGINED = 'ISLOGGINED'
 
 export function authenticate(email, password) {
 	return (dispatch, getState) => {
@@ -28,11 +29,34 @@ export function authenticate(email, password) {
 	}
 }
 
+export function signupAuthenticate(name, email, nickname, password) {
+	return (dispatch, getState) => {
+		dispatch(startAuthentication())
+		return axios({
+			url: '/api/auth',
+			method: 'POST',
+			data: { name, email, nickname, password }
+		}).then(response => {
+			console.log(response.headers)
+			// const uid = response.headers['uid']
+			// const client = response.headers['client']
+			// const accessToken = response.headers['access-token']
+			// const storage = localStorage
+			// storage.uid = response.headers['uid'];
+			// storage.client = response.headers['client'];
+			// storage.accessToken = response.headers['access-token'];
+		// 	dispatch(successAuthentication(uid, client, accessToken, expiry))
+		// }).catch(error => {
+		// 	dispatch(failAuthentication())
+		})
+	}
+}
+
 export function signout() {
 	return (dispatch, getState) => {
 		const { auth } = getState()
 		return axios({
-			url: 'api/auth/sign_out',
+			url: '/api/auth/sign_out',
 			method: 'DELETE',
 			headers: {
 				'access-token': auth.accessToken,
@@ -42,7 +66,10 @@ export function signout() {
 		}).then(response => {
 			dispatch(doSignout())
 			localStorage.clear();
-		}).then(res =>{
+			console.log(localStorage.client)
+			console.log(localStorage.accessToken)
+			console.log(localStorage.uid)
+		}).then(res => {
 			location.reload();
 		}).catch(error => {
 			console.log(error)
@@ -68,4 +95,7 @@ function failAuthentication() {
 
 function doSignout() {
 	return { type: SIGNOUT }
+}
+function isLoggined() {
+	return { type: ISLOGGINED }
 }

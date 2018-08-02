@@ -1,4 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
+import Grid from '@material-ui/core/Grid';
+import { Field, reduxForm } from 'redux-form';
+import Text from '../general/text';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 class Signup extends React.Component {
 	constructor(props) {
@@ -10,7 +16,9 @@ class Signup extends React.Component {
 			password: ''
 		}
 	}
-
+	test(name, email, nickname, password) {
+		this.props.signupAuthenticate(name, email, nickname, password);
+	}
 	handleSubmit() {
 		const { name, email, password, nickname } = this.state
 		const fd = new FormData()
@@ -18,14 +26,13 @@ class Signup extends React.Component {
 		fd.append('email', email)
 		fd.append('nickname', nickname)
 		fd.append('password', password)
-		console.log(fd.get('name'))
 		fetch('/api/auth', {
       method: 'POST',
       header: { 'Content-Type': 'application/json' },
       body: fd
     })
-    .then(res =>
-			res.json()).then(json => {
+    .then( res => res.json())
+		.then( json => {
       console.log(json)
 			this.props.history.push('/signin');
     })
@@ -33,19 +40,35 @@ class Signup extends React.Component {
 	render() {
 		console.log(this.state)
 		const { isAuthenticated } = this.props
-		if (isAuthenticated) {
+		if (localStorage.client && localStorage.accessToken && localStorage.uid) {
 			return <div>success</div>
 		}
 		return (
-			<div>
-        <h2>Signup</h2>
-        <p>Name: <input type="text" value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} /></p>
-				<p>Nickname: <input type="text" value={this.state.nickname} onChange={(e) => this.setState({ nickname: e.target.value })} /></p>
-        <p>Email: <input type="text" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} /></p>
-        <p>Password: <input type="text" value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} /></p>
-        <p><input type="submit" value="Signup" onClick={this.handleSubmit.bind(this)} /></p>
-      </div>
+				<Content>
+					<Typography variant="display2">新規登録の方はこちら</Typography>
+					<Label variant="headline">名前</Label>
+					<Field name="name" type="text" value={this.state.name} component={Text} label="Name" onChange={(e) => this.setState({ name: e.target.value })}/>
+
+					<Label variant="headline">ニックネーム</Label>
+					<Field name="nickname" type="text" value={this.state.nickname} component={Text} label="Nickname" onChange={(e) => this.setState({ nickname: e.target.value })}/>
+
+					<Label variant="headline">Email</Label>
+					<Field name="email" type="text" value={this.state.email} component={Text} label="Email" onChange={(e) => this.setState({ email: e.target.value })}/>
+
+					<Label variant="headline">Password</Label>
+					<Field name="password" type="text" value={this.state.password} component={Text} label="password" onChange={(e) => this.setState({ password: e.target.value })}/>
+
+					<Button type="submit" variant="contained" color="primary" onClick={this.test.bind(this)}>登録する</Button>
+				</Content>
 		)
 	}
 }
-export default Signup
+
+const Content = styled.div `
+	height: 500px;
+`
+const Label = styled(Typography)`
+`
+export default reduxForm({
+	form: 'Signup'
+})(Signup)

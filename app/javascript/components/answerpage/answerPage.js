@@ -20,7 +20,7 @@ export default class AnswerPage extends React.Component {
   render() {
 		const { auth } = this.props
 		const { isAuthenticated } = auth
-    if ( isAuthenticated ) {
+    if ( localStorage.client && localStorage.accessToken && localStorage.uid && isAuthenticated ) {
 			return (
 				<Grid item xs={12}>
 					<Container  item xs={8}>

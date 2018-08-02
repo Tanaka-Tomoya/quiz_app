@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { BrowserRouter,Route } from 'react-router-dom'
 
 import configureStore from '../store';
+import Information from '../containers/userInformation';
 import Home from '../containers/home'
 import Create from '../containers/create'
 import AnswerPage from '../containers/answerPage'
@@ -21,13 +22,12 @@ export default class App extends Component {
 			<MuiThemeProvider>
 				<Provider store={store}>
 					<BrowserRouter>
-						<MainGrid container align="center">
-							<Test item xs={12}>
-								<Menu />
-							</Test>
+						<MainGrid container spacing={0}>
+							<Menu />
 							<Route exact path='/' component={Home} />
 					  	<Route exact path='/create' component={Create} />
 							<Route exact path='/answer/:id' component={AnswerPage} />
+							<Route exact path='/information' component={Information} />
 							<Route exact path='/signup' component={Signup} />
 							<Route exact path='/signin' component={Signin} />
 						</MainGrid>
@@ -39,10 +39,5 @@ export default class App extends Component {
 }
 
 const MainGrid = styled(Grid)`
-	height: auto;
-`
-
-const Test = styled.div`
-	height: 40px;
-	width: 100%;
+	height: 1000px;
 `

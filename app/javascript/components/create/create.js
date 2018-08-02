@@ -10,6 +10,7 @@ export default class Create extends React.Component {
   onSubmitEvent(values) {
     const props = this.props
     console.log(props)
+
     async function submit() {
       await props.createQuestion(values);
       props.history.push('/');
@@ -22,7 +23,7 @@ export default class Create extends React.Component {
   render() {
     const { auth } = this.props
 		const { isAuthenticated } = auth
-    if ( isAuthenticated ) {
+    if ( localStorage.client && localStorage.accessToken && localStorage.uid && isAuthenticated ) {
 			return (
         <CreateMain item xs={12}>
           <Grid item xs={6}>
@@ -31,21 +32,7 @@ export default class Create extends React.Component {
         </CreateMain>
 			)
 		} else {
-		return (
-			<div>
-				<p>Please signin or signup </p>
-				<Link to="/signin">
-					<Button size="large">
-						signin
-					</Button>
-				</Link>
-				<Link to="/signup" >
-					<Button size="large">
-						signup
-					</Button>
-				</Link>
-			</div>
-			)
+		  return <Redirect to="/signup" />
 		}
   }
 }

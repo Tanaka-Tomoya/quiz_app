@@ -1,12 +1,25 @@
-import { REQUEST,RECEIVED,FAILED,SIGNOUT } from '../actions/auth';
+import { REQUEST, RECEIVED, FAILED, SIGNOUT } from '../actions/auth';
 
-const initialState = {
-	loading: false,
-	isAuthenticated: false,
-	client: null,
-	accessToken: null,
-	uid: null,
-	expiry: null,
+let initialState
+
+if ( localStorage.client && localStorage.accessToken && localStorage.uid ) {
+  initialState = {
+		loading: false,
+		isAuthenticated: true,
+		client: localStorage.client,
+		accessToken: localStorage.accessToken,
+		uid: localStorage.uid,
+		expiry: null
+	}
+} else {
+  initialState = {
+		loading: false,
+		isAuthenticated: false,
+		client: null,
+		accessToken: null,
+		uid: null,
+		expiry: null
+	}
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -43,7 +56,14 @@ export default function reducer(state = initialState, action = {}) {
 		case SIGNOUT:
 			return Object.assign(
 				{},
-				initialState
+				{
+					loading: false,
+					isAuthenticated: false,
+					client: null,
+					accessToken: null,
+					uid: null,
+					expiry: null,
+				}
 			)
 		default: return state
 	}
