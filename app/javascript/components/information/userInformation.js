@@ -5,13 +5,19 @@ import Signin from '../../containers/signin'
 import Signup from '../../containers/signup'
 import Introduction from './introduction'
 import background from './background.jpg'
+import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom'
 
 export default class Information extends React.Component {
 	constructor(props){
 		super(props)
 	}
 	render() {
-		return(
+		const { auth } = this.props
+		const { isAuthenticated } = auth
+		if (localStorage.client && localStorage.accessToken && localStorage.uid ) {
+				return <Redirect to="/" />
+		} else {
+		return (
 			<Content>
 				<Opacity container>
 					<Introduction/>
@@ -21,7 +27,8 @@ export default class Information extends React.Component {
 					</Form>
 				</Opacity>
       </Content>
-		)
+			)
+		}
 	}
 }
 

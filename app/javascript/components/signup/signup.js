@@ -16,9 +16,12 @@ class Signup extends React.Component {
 			password: ''
 		}
 	}
-	test(name, email, nickname, password) {
+
+	postTest() {
+		const { email, password, name, nickname } = this.state
 		this.props.signupAuthenticate(name, email, nickname, password);
 	}
+
 	handleSubmit() {
 		const { name, email, password, nickname } = this.state
 		const fd = new FormData()
@@ -58,7 +61,7 @@ class Signup extends React.Component {
 					<Label variant="headline">Password</Label>
 					<Field name="password" type="text" value={this.state.password} component={Text} label="password" onChange={(e) => this.setState({ password: e.target.value })}/>
 
-					<Button type="submit" variant="contained" color="primary" onClick={this.test.bind(this)}>登録する</Button>
+					<Button type="submit" variant="contained" color="primary" onClick={this.postTest.bind(this)}>登録する</Button>
 				</Content>
 		)
 	}

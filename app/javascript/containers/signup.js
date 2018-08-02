@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import Signup from '../components/signup/signup'
+import { signupAuthenticate } from '../actions/auth';
 
 function mapStateToProps(state) {
 	const { auth } = state

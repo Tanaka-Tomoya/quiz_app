@@ -38,16 +38,16 @@ export function signupAuthenticate(name, email, nickname, password) {
 			data: { name, email, nickname, password }
 		}).then(response => {
 			console.log(response.headers)
-			// const uid = response.headers['uid']
-			// const client = response.headers['client']
-			// const accessToken = response.headers['access-token']
-			// const storage = localStorage
-			// storage.uid = response.headers['uid'];
-			// storage.client = response.headers['client'];
-			// storage.accessToken = response.headers['access-token'];
-		// 	dispatch(successAuthentication(uid, client, accessToken, expiry))
-		// }).catch(error => {
-		// 	dispatch(failAuthentication())
+			const uid = response.headers['uid']
+			const client = response.headers['client']
+			const accessToken = response.headers['access-token']
+			const storage = localStorage
+			storage.uid = response.headers['uid'];
+			storage.client = response.headers['client'];
+			storage.accessToken = response.headers['access-token'];
+			dispatch(successAuthentication(uid, client, accessToken, expiry))
+		}).catch(error => {
+			dispatch(failAuthentication())
 		})
 	}
 }
