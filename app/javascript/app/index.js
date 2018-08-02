@@ -22,14 +22,12 @@ export default class App extends Component {
 			<MuiThemeProvider>
 				<Provider store={store}>
 					<BrowserRouter>
-						<MainGrid container spacing={0}>
+						<MainGrid container>
 							<Menu />
 							<Route exact path='/' component={Home} />
 					  	<Route exact path='/create' component={Create} />
 							<Route exact path='/answer/:id' component={AnswerPage} />
 							<Route exact path='/information' component={Information} />
-							<Route exact path='/signup' component={Signup} />
-							<Route exact path='/signin' component={Signin} />
 						</MainGrid>
 					</BrowserRouter>
 				</Provider>

@@ -39,13 +39,11 @@ class Signup extends React.Component {
       console.log(json)
 			this.props.history.push('/signin');
     })
+		.error( error =>{
+			console.log(error)
+		})
 	}
 	render() {
-		console.log(this.state)
-		const { isAuthenticated } = this.props
-		if (localStorage.client && localStorage.accessToken && localStorage.uid) {
-			return <div>success</div>
-		}
 		return (
 				<Content>
 					<Typography variant="display2">新規登録の方はこちら</Typography>
@@ -59,7 +57,7 @@ class Signup extends React.Component {
 					<Field name="email" type="text" value={this.state.email} component={Text} label="Email" onChange={(e) => this.setState({ email: e.target.value })}/>
 
 					<Label variant="headline">Password</Label>
-					<Field name="password" type="text" value={this.state.password} component={Text} label="password" onChange={(e) => this.setState({ password: e.target.value })}/>
+					<Field name="password" type="text" value={this.state.password} component={Text} label="Password" onChange={(e) => this.setState({ password: e.target.value })}/>
 
 					<Button type="submit" variant="contained" color="primary" onClick={this.postTest.bind(this)}>登録する</Button>
 				</Content>

@@ -18,15 +18,9 @@ class Signin extends React.Component {
 	handleSubmit() {
 		const { email, password } = this.state
 		this.props.authenticate(email, password);
-		// document.cookie = 'accessToken=this.props.auth.accessToken max-age=30';
 	}
 
 	render() {
-		console.log(this.state)
-		const { isAuthenticated } = this.props
-		if (localStorage.client && localStorage.accessToken && localStorage.uid) {
-			return <Redirect to="/"/>
-		}
 		return (
 			<Content>
 				<Typography variant="display2">アカウントをお持ちの方はこちら</Typography>
@@ -39,13 +33,12 @@ class Signin extends React.Component {
 
 				<Button type="submit" variant="contained" color="primary" onClick={this.handleSubmit.bind(this)}>ログインする</Button>
 			</Content>
-
 		)
 	}
 }
 
 const Content = styled.div `
-	height: 200px;
+	height: 500px;
 `
 
 const Label = styled(Typography)`

@@ -21,9 +21,9 @@ export default class Home extends Component {
 		console.log(localStorage.client)
 		console.log(localStorage.accessToken)
 		console.log(localStorage.uid)
-		if ( localStorage.client && localStorage.accessToken && localStorage.uid ) {
+		if ( this.props.auth.isAuthenticated && this.props.auth.client && this.props.auth.accessToken && this.props.auth.uid ) {
 			return (
-				<Container item xs={12}>
+				<Container container justify='center'>
 					<Grid item xs={4} >
 						<Article questions={this.props.questions}/>
 					</Grid>
@@ -37,5 +37,5 @@ export default class Home extends Component {
 
 const Container = styled(Grid)`
 	width: 100%;
-  height: auto;
+  height: 1000px;
 `

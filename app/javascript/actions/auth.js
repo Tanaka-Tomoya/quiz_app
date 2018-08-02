@@ -41,12 +41,15 @@ export function signupAuthenticate(name, email, nickname, password) {
 			const uid = response.headers['uid']
 			const client = response.headers['client']
 			const accessToken = response.headers['access-token']
+			const expiry = response.headers['expiry']
+
 			const storage = localStorage
 			storage.uid = response.headers['uid'];
 			storage.client = response.headers['client'];
 			storage.accessToken = response.headers['access-token'];
 			dispatch(successAuthentication(uid, client, accessToken, expiry))
 		}).catch(error => {
+			console.log(error)
 			dispatch(failAuthentication())
 		})
 	}

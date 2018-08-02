@@ -14,8 +14,8 @@ export default class Information extends React.Component {
 	render() {
 		const { auth } = this.props
 		const { isAuthenticated } = auth
-		if (localStorage.client && localStorage.accessToken && localStorage.uid ) {
-				return <Redirect to="/" />
+		if (this.props.auth.isAuthenticated && this.props.auth.client && this.props.auth.accessToken && this.props.auth.uid ) {
+			return <Redirect to="/" />
 		} else {
 		return (
 			<Content>
