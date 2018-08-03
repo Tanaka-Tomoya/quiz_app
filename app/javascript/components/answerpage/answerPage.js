@@ -22,7 +22,7 @@ export default class AnswerPage extends React.Component {
 		const { isAuthenticated } = auth
     if ( localStorage.client && localStorage.accessToken && localStorage.uid && isAuthenticated ) {
 			return (
-				<Grid item xs={12}>
+				<Grid container justify='center' style={{height: '800px'}}>
 					<Container  item xs={8}>
 						<AnswerField question={this.props.answerItem} answer={this.props.form.AnswerField}/>
 					</Container>

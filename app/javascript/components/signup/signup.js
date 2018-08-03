@@ -46,7 +46,7 @@ class Signup extends React.Component {
 	render() {
 		return (
 				<Content>
-					<Typography variant="display2">新規登録の方はこちら</Typography>
+					<Typography variant="display2" style={{paddingTop: '10px',marginBottom: '10px'}}>新規登録の方はこちら</Typography>
 					<Label variant="headline">名前</Label>
 					<Field name="name" type="text" value={this.state.name} component={Text} label="Name" onChange={(e) => this.setState({ name: e.target.value })}/>
 
@@ -57,7 +57,7 @@ class Signup extends React.Component {
 					<Field name="email" type="text" value={this.state.email} component={Text} label="Email" onChange={(e) => this.setState({ email: e.target.value })}/>
 
 					<Label variant="headline">Password</Label>
-					<Field name="password" type="text" value={this.state.password} component={Text} label="Password" onChange={(e) => this.setState({ password: e.target.value })}/>
+					<Field name="password" type="text" value={this.state.password} component={Text} label="Password(八文字以上入力してください)" onChange={(e) => this.setState({ password: e.target.value })}/>
 
 					<Button type="submit" variant="contained" color="primary" onClick={this.postTest.bind(this)}>登録する</Button>
 				</Content>
