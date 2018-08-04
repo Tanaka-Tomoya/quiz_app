@@ -5,7 +5,6 @@ import { getQuestion } from '../actions/answerPage';
 function mapStateToProps(state) {
   return state;
 }
-
 function mapDispatchToProps(dispatch) {
   return {
     getQuestion: (id) => { dispatch(getQuestion(id)); }

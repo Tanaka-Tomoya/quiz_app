@@ -34,6 +34,7 @@ export default class Information extends React.Component {
 
 const Content = styled.div`
 	width: 100%;
+	height: 100vh;
 	background-image: url(${background});
 	background-repeat: no-repeat;
 	background-position: center center;

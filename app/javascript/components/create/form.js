@@ -9,6 +9,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import validate from '../form/createQuestionValidate'
+import asyncValidate from '../form/asyncValidate'
 
 class Form extends React.Component {
   render() {
@@ -19,8 +21,8 @@ class Form extends React.Component {
         <FormContent onSubmit={handleSubmit}>
           <Label variant="headline">タイトル</Label>
           <Field name="title" type="text" component={Text} label="Title"/>
-            <Label variant="headline">問題</Label>
-            <Field name="question" type="text" component={Text} label="Question"/>
+          <Label variant="headline">問題</Label>
+          <Field name="question" type="text" component={Text} label="Question"/>
           <Label variant="headline">選択肢</Label>
   				<Field name="a" type="text" component={Text} label="A"/>
   				<Field name="b" type="text" component={Text} label="B"/>
@@ -28,14 +30,13 @@ class Form extends React.Component {
   				<Field name="d" type="text" component={Text} label="D"/>
           <Label variant="headline">答え</Label>
           <Control>
-            <InputLabel>Answer</InputLabel>
+            <SelectLabel>Answer</SelectLabel>
     				<SelectField
               name="answer"
               component={Select}
               label="Answer"
               >
-                <MenuItem value={''} name="">
-                </MenuItem>
+                <MenuItem value={''} name="">一つ選択してください</MenuItem>
                 <MenuItem value={'a'} name="a">a</MenuItem>
                 <MenuItem value={'b'} name="b">b</MenuItem>
                 <MenuItem value={'c'} name="c">c</MenuItem>
@@ -52,7 +53,9 @@ class Form extends React.Component {
 }
 
 export default reduxForm({
-  form: 'Form'
+  form: 'Form',
+  validate: validate,
+  asyncValidate
 })(Form)
 
 const FormContainer = styled.div`
@@ -69,11 +72,12 @@ const FormContent = styled.form`
 `
 const SelectField = styled(Field)`
   height: 30px;
-  width: 90%;
+  width: 500px;
   padding-top: 20px;
 `
 const Control = styled(FormControl)`
   width: 100%;
+  height: 50px;
   margin-left: 30px !important;
 `
 const Submit = styled.div`
@@ -83,4 +87,9 @@ const Submit = styled.div`
 const Label = styled(Typography)`
   line-height: 50px !important;
   height: 36px;
+`
+const SelectLabel = styled(InputLabel)`
+  width: 500px;
+  height: 40px;
+  transform: translate(0, 15px) scale(1) !important;
 `

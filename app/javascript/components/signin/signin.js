@@ -6,6 +6,9 @@ import { Field, reduxForm } from 'redux-form';
 import Text from '../general/text';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import validate from '../form/userValidate'
+import asyncValidate from '../form/asyncValidate'
+
 
 class Signin extends React.Component {
 	constructor(props) {
@@ -14,6 +17,7 @@ class Signin extends React.Component {
 			email: '',
 			password: ''
 		}
+	this.handleSubmit = this.handleSubmit.bind(this)
 	}
 	handleSubmit() {
 		const { email, password } = this.state
@@ -21,8 +25,9 @@ class Signin extends React.Component {
 	}
 
 	render() {
+		const { handleSubmit } = this.props;
 		return (
-			<Content>
+			<Content onSubmit={handleSubmit(this.handleSubmit)}>
 				<Typography variant="display2">アカウントをお持ちの方はこちら</Typography>
 
 				<Label variant="headline">Email</Label>
@@ -31,18 +36,20 @@ class Signin extends React.Component {
 				<Label variant="headline">Password</Label>
 				<Field name="password" type="text" value={this.state.password} component={Text} label="Password" onChange={(e) => this.setState({ password: e.target.value })}/>
 
-				<Button type="submit" variant="contained" color="primary" onClick={this.handleSubmit.bind(this)}>ログインする</Button>
+				<Button type="submit" variant="contained" color="primary">ログインする</Button>
 			</Content>
 		)
 	}
 }
 
-const Content = styled.div `
+const Content = styled.form `
 	height: 500px;
 `
 
 const Label = styled(Typography)`
 `
 export default reduxForm({
-	form: 'Signin'
+	form: 'Signin',
+	validate: validate,
+	asyncValidate
 })(Signin)

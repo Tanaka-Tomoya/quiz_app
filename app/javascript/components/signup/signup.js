@@ -5,6 +5,10 @@ import { Field, reduxForm } from 'redux-form';
 import Text from '../general/text';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import validate from '../form/userValidate'
+import asyncValidate from '../form/asyncValidate'
+
+
 
 class Signup extends React.Component {
 	constructor(props) {
@@ -15,37 +19,23 @@ class Signup extends React.Component {
 			nickname: '',
 			password: ''
 		}
+		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 
 	postTest() {
-		const { email, password, name, nickname } = this.state
-		this.props.signupAuthenticate(name, email, nickname, password);
+
 	}
 
 	handleSubmit() {
-		const { name, email, password, nickname } = this.state
-		const fd = new FormData()
-		fd.append('name', name)
-		fd.append('email', email)
-		fd.append('nickname', nickname)
-		fd.append('password', password)
-		fetch('/api/auth', {
-      method: 'POST',
-      header: { 'Content-Type': 'application/json' },
-      body: fd
-    })
-    .then( res => res.json())
-		.then( json => {
-      console.log(json)
-			this.props.history.push('/signin');
-    })
-		.error( error =>{
-			console.log(error)
-		})
+		const { email, password, name, nickname } = this.state
+		console.log({email})
+		this.props.signupAuthenticate(name, email, nickname, password);
 	}
 	render() {
+		const { handleSubmit } = this.props;
+		console.log(this.state)
 		return (
-				<Content>
+				<Content onSubmit={handleSubmit(this.handleSubmit)}>
 					<Typography variant="display2" style={{paddingTop: '10px',marginBottom: '10px'}}>新規登録の方はこちら</Typography>
 					<Label variant="headline">名前</Label>
 					<Field name="name" type="text" value={this.state.name} component={Text} label="Name" onChange={(e) => this.setState({ name: e.target.value })}/>
@@ -59,17 +49,19 @@ class Signup extends React.Component {
 					<Label variant="headline">Password</Label>
 					<Field name="password" type="text" value={this.state.password} component={Text} label="Password(八文字以上入力してください)" onChange={(e) => this.setState({ password: e.target.value })}/>
 
-					<Button type="submit" variant="contained" color="primary" onClick={this.postTest.bind(this)}>登録する</Button>
+					<Button type="submit" variant="contained" color="primary">登録する</Button>
 				</Content>
 		)
 	}
 }
 
-const Content = styled.div `
+const Content = styled.form `
 	height: 500px;
 `
 const Label = styled(Typography)`
 `
 export default reduxForm({
-	form: 'Signup'
+	form: 'Signup',
+	validate: validate,
+	asyncValidate
 })(Signup)
