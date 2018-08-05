@@ -2,12 +2,15 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import styled from 'styled-components';
 import Text from '../general/text';
-import Select from '../general/select';
+import RadioControl from '../general/radio';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormHelperText from '@material-ui/core/FormHelperText'
 import Typography from '@material-ui/core/Typography';
+import Radio from '@material-ui/core/Radio'
 import Button from '@material-ui/core/Button';
 import validate from '../form/createQuestionValidate'
 import asyncValidate from '../form/asyncValidate'
@@ -30,18 +33,12 @@ class Form extends React.Component {
   				<Field name="d" type="text" component={Text} label="D"/>
           <Label variant="headline">答え</Label>
           <Control>
-            <SelectLabel>Answer</SelectLabel>
-    				<SelectField
-              name="answer"
-              component={Select}
-              label="Answer"
-              >
-                <MenuItem value={''} name="">一つ選択してください</MenuItem>
-                <MenuItem value={'a'} name="a">a</MenuItem>
-                <MenuItem value={'b'} name="b">b</MenuItem>
-                <MenuItem value={'c'} name="c">c</MenuItem>
-                <MenuItem value={'d'} name="d">d</MenuItem>
-    				</SelectField>
+            <Field name="answer" component={RadioControl}>
+              <FormControlLabel value="a" control={<Radio />} label="A" />
+              <FormControlLabel value="b" control={<Radio />} label="B" />
+              <FormControlLabel value="c" control={<Radio />} label="C" />
+              <FormControlLabel value="d" control={<Radio />} label="D" />
+            </Field>
           </Control>
           <Submit>
             <Button type="submit" color="primary" variant="contained">Submit</Button>
@@ -70,15 +67,12 @@ const FormContent = styled.form`
   text-align: left;
   padding: 30px 0 0 40px;
 `
+const SelectLabel = styled(InputLabel)`
+`
 const SelectField = styled(Field)`
-  height: 30px;
-  width: 500px;
-  padding-top: 20px;
 `
 const Control = styled(FormControl)`
-  width: 100%;
-  height: 50px;
-  margin-left: 30px !important;
+
 `
 const Submit = styled.div`
   margin-top: 70px;
@@ -87,9 +81,4 @@ const Submit = styled.div`
 const Label = styled(Typography)`
   line-height: 50px !important;
   height: 36px;
-`
-const SelectLabel = styled(InputLabel)`
-  width: 500px;
-  height: 40px;
-  transform: translate(0, 15px) scale(1) !important;
 `

@@ -27,9 +27,6 @@ export default class SelectFiled extends React.Component {
 	}
 }
 const SelectItem = styled.div`
-	height: 100%;
-	width: 100%;;
 `
 const SelectField = styled(Select) `
-	width: 500px;
 `
