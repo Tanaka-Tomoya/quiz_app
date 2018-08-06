@@ -22,7 +22,14 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # processes).
 #
 # workers ENV.fetch("WEB_CONCURRENCY") { 2 }
-
+if "development" == ENV.fetch("RAILS_ENV") { "development" }
+  ssl_bind '0.0.0.0', '3003', {
+    key: "../quiz_app/server.key",
+    cert: "../quiz_app/server.crt",
+    #ca: "/file_path/ca", # オレオレ証明書の場合は必要ないです／中間証明書が必要な場合は指定してください
+    verify_mode: "none"
+  }
+end
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
 # before forking the application. This takes advantage of Copy On Write

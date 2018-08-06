@@ -46,6 +46,11 @@ gem 'webpacker'
 gem 'devise'
 gem 'devise_token_auth'
 gem 'rack-cors'
+gem 'omniauth'
+gem 'omniauth-oauth2'
+gem 'omniauth-facebook'
+
+gem 'thin'
 
 group :development, :test do
   gem 'pry-rails'
