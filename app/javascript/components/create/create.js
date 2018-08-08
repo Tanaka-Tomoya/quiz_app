@@ -25,8 +25,8 @@ export default class Create extends React.Component {
 		const { isAuthenticated } = auth
     if ( localStorage.client && localStorage.accessToken && localStorage.uid && isAuthenticated ) {
 			return (
-        <CreateMain container justify='center'>
-          <Grid item xs={6}>
+        <CreateMain container justify='center' spacing={24}>
+          <Grid item xs={8}>
             <Form onSubmit={this.onSubmitEvent.bind(this)} />
           </Grid>
         </CreateMain>

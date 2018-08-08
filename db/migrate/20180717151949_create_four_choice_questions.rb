@@ -7,7 +7,7 @@ class CreateFourChoiceQuestions < ActiveRecord::Migration[5.1]
       t.string :c, default: 'test'
       t.string :d, default: 'test'
       t.string :answer, default: 'test'
-
+      t.integer :question_id, default: 1
       t.timestamps
     end
   end
