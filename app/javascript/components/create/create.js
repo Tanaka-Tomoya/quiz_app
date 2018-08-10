@@ -9,14 +9,20 @@ import Button from '@material-ui/core/Button';
 export default class Create extends React.Component {
   onSubmitEvent(values) {
     const props = this.props
-    console.log(props)
-
+    const questions = values.questions
+    const title = values.title
     async function submit() {
-      await props.createQuestion(values);
+      await questions.forEach( (questions) => {
+         props.createQuestion(questions);
+      })
+      await props.createQuestionTitle(title);
       props.history.push('/');
     }
-    // console.log(values)
+    console.log(values)
+    console.log(values.title)
+    console.log(values.questions)
     submit()
+
     // this.props.createQuestion(values);
     // this.props.history.push('/');
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm, FieldArray } from 'redux-form';
 import styled from 'styled-components';
 import RadioControl from '../general/radio';
+import Text from '../general/text';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -15,11 +16,13 @@ class Form extends React.Component {
 
   render() {
     const {handleSubmit} = this.props
-    console.log(handleSubmit)
+    // console.log(handleSubmit)
     return (
       <FormContainer>
         <Typography variant="display3">作成</Typography>
         <Content onSubmit={handleSubmit}>
+          <Label variant="headline">タイトル</Label>
+          <Field name="title" type="text" component={Text} label="Title"/>
           <FieldArray name="questions" component={formContent}/>
           <Submit>
             <Button type="submit" color="primary" variant="contained">Submit</Button>
@@ -46,7 +49,10 @@ const FormContainer = styled.div`
   text-align: left;
 
 `
-
+const Label = styled(Typography)`
+  line-height: 50px !important;
+  height: 36px;
+`
 const Content = styled.form`
   height: 800px;
   width: 90%;

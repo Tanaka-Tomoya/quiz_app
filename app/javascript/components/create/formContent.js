@@ -35,9 +35,9 @@ export default class FormContent extends React.Component {
 		const {fields} = this.props
 		const {tabAmount} = this.state
 		const {tabs} = this.state
-		console.log(this.props.question)
+		// console.log(this.props.question)
 		tabs.splice(0,tabs.length)
-		console.log(fields)
+		// console.log(fields)
 		for (let i = 0; i < tabAmount; i++ ) {
 			tabs.push(
 				<TabElement label={`${i + 1}`} key={i}/>
@@ -46,14 +46,16 @@ export default class FormContent extends React.Component {
 		return (
 			<div>
 				<TabContent>
-					<TabBar value={value} onChange={this.handleChange}>
+					<TabBar value={value} onChange={this.handleChange} scrollable scrollButtons="auto">
 						{tabs}
 					</TabBar>
 				</TabContent>
+				<AddTabButton>
+					<Button onClick={this.addQuestion}>+</Button>
+				</AddTabButton>
 				{fields.map((question, i) =>
 					<FieldArrayContent key={i} value={i} tabValue={value} question={question} />
 				)}
-								<Button onClick={this.addQuestion}>+</Button>
 			</div>
 
 		)
@@ -70,4 +72,8 @@ const TabBar = styled(Tabs)`
 const TabElement = styled(Tab) `
   width: 50px;
   height: 30px;
+`
+const AddTabButton = styled.div `
+	width: 100%;
+	text-align: right;
 `

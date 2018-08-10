@@ -16,15 +16,12 @@ export default class CreateFieldArrayContent extends React.Component {
 		const {tabValue} = this.props
 		const {value} = this.props
 		const {question} = this.props
-		console.log(question)
+		// console.log(question)
 		return (
 			<div>
 			{ tabValue === value &&
 				<div key={value}>
 					<Label variant="headline">問題#{value + 1}</Label>
-					<Label variant="headline">タイトル</Label>
-					<Field name={`${question}.title`} type="text" component={Text} label="Title"/>
-					<Label variant="headline">問題</Label>
 					<Field name={`${question}.question`} type="text" component={Text} label="Question"/>
 					<Label variant="headline">選択肢</Label>
 					<Field name={`${question}.a`} type="text" component={Text} label="A"/>
