@@ -15,6 +15,7 @@ class Form extends React.Component {
 
   render() {
     const {handleSubmit} = this.props
+    console.log(handleSubmit)
     return (
       <FormContainer>
         <Typography variant="display3">作成</Typography>

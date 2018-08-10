@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   namespace :api, {format: 'json'} do
     namespace :v1 do
-      resources :four_choice_questions
+      resources :four_choice_questions, :questions, :users
     end
   end
 

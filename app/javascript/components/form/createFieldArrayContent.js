@@ -13,26 +13,27 @@ export default class CreateFieldArrayContent extends React.Component {
 		super(props)
 	}
 	render() {
-		console.log(this.props.value)
-console.log(this.props.tabValue)
 		const {tabValue} = this.props
 		const {value} = this.props
+		const {question} = this.props
+		console.log(question)
 		return (
 			<div>
 			{ tabValue === value &&
-				<div>
+				<div key={value}>
+					<Label variant="headline">問題#{value + 1}</Label>
 					<Label variant="headline">タイトル</Label>
-					<Field name="title" type="text" component={Text} label="Title"/>
+					<Field name={`${question}.title`} type="text" component={Text} label="Title"/>
 					<Label variant="headline">問題</Label>
-					<Field name="question" type="text" component={Text} label="Question"/>
+					<Field name={`${question}.question`} type="text" component={Text} label="Question"/>
 					<Label variant="headline">選択肢</Label>
-					<Field name="a" type="text" component={Text} label="A"/>
-					<Field name="b" type="text" component={Text} label="B"/>
-					<Field name="c" type="text" component={Text} label="C"/>
-					<Field name="d" type="text" component={Text} label="D"/>
+					<Field name={`${question}.a`} type="text" component={Text} label="A"/>
+					<Field name={`${question}.b`} type="text" component={Text} label="B"/>
+					<Field name={`${question}.c`} type="text" component={Text} label="C"/>
+					<Field name={`${question}.d`} type="text" component={Text} label="D"/>
 					<Label variant="headline">答え</Label>
 					<Control>
-						<Field name="answer" component={RadioControl}>
+						<Field name={`${question}.answer`} component={RadioControl}>
 							<FormControlLabel value="a" control={<Radio />} label="A" />
 							<FormControlLabel value="b" control={<Radio />} label="B" />
 							<FormControlLabel value="c" control={<Radio />} label="C" />

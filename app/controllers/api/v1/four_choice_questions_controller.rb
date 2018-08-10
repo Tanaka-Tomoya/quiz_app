@@ -1,5 +1,5 @@
 class Api::V1::FourChoiceQuestionsController < ApplicationController
-	before_action :set_question, only: [
+	before_action :set_four_choice_question, only: [
     :show, :update, :destroy
   ]
 
@@ -8,7 +8,7 @@ class Api::V1::FourChoiceQuestionsController < ApplicationController
   end
 
   def create
-    @four_choice_question = FourChoiceQuestion.create!(question_params)
+    @four_choice_question = FourChoiceQuestion.create!(four_choice_question_params)
     render json: @four_choice_question
   end
 
@@ -17,7 +17,7 @@ class Api::V1::FourChoiceQuestionsController < ApplicationController
   end
 
   def update
-    @four_choice_question.update(question_params)
+    @four_choice_question.update(four_choice_question_params)
     render json: @four_choice_question
   end
 
@@ -28,11 +28,11 @@ class Api::V1::FourChoiceQuestionsController < ApplicationController
 
   private
 
-  def question_params
-    params.permit(:title, :a, :b, :c, :d, :answer)
+  def four_choice_question_params
+    params.permit(:a, :b, :c, :d, :answer, :question, :question_id)
   end
 
-  def set_question
+  def set_four_choice_question
     @four_choice_question = FourChoiceQuestion.find(params[:id])
   end
 end
