@@ -22,17 +22,3 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-
-values.forEach( (values) => {
-  const obj = values;
-  const method = "POST";
-  const body = JSON.stringify(obj);
-  const headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  };
-  fetch("/api/v1/four_choice_questions",{method, headers, body})
-  return dispatch => {
-    dispatch(postQuestion());
-  }
-})

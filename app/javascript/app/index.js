@@ -26,7 +26,7 @@ export default class App extends Component {
 							<Menu />
 							<Route exact path='/' component={Home} />
 					  	<Route exact path='/create' component={Create} />
-							<Route exact path='/answer/:id' component={AnswerPage} />
+							<Route exact path='/answer/:questionsId/:questionId' component={AnswerPage} />
 							<Route exact path='/information' component={Information} />
 						</MainGrid>
 					</BrowserRouter>

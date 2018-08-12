@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'home#index'
-  get '/answer/:id', to: 'home#answer'
+  get '/answer/:id/:id', to: 'home#answer'
   get 'create', to: 'home#create'
   get 'signup', to: 'home#signup'
   get 'signin', to: 'home#signin'

@@ -17,10 +17,10 @@ export default class Home extends Component {
 	render() {
 		const { auth } = this.props
 		const { isAuthenticated } = auth
-		console.log(localStorage)
-		console.log(localStorage.client)
-		console.log(localStorage.accessToken)
-		console.log(localStorage.uid)
+		// console.log(localStorage)
+		// console.log(localStorage.client)
+		// console.log(localStorage.accessToken)
+		// console.log(localStorage.uid)
 		if ( this.props.auth.isAuthenticated && this.props.auth.client && this.props.auth.accessToken && this.props.auth.uid ) {
 			return (
 				<Container container justify='center'>

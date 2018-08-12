@@ -29,7 +29,7 @@ export default function Question(question,i) {
                   }
                   title={
                     <Typography variant="headline">
-                      <Linkk to ={'/answer/' + question.id}>{question.title}</Linkk>
+                      <Linkk to ={'/answer/' + question.id + '/0'}>{question.title}</Linkk>
                     </Typography>
                   }
                   subheader="2018/7/10"

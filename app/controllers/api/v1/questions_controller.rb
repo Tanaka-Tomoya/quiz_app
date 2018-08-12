@@ -13,7 +13,7 @@ class Api::V1::QuestionsController < ApplicationController
 	end
 
 	def show
-		render json: @question
+		render json: @question.to_json(:include =>[:four_choice_questions])
 	end
 
 	def update

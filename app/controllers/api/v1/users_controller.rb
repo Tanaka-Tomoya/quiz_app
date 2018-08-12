@@ -13,7 +13,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
-    render json: @user
+    render json: @user.to_json(:include => [:questions, :questions =>{:include => [:four_choice_questions] }])
   end
 
   def update

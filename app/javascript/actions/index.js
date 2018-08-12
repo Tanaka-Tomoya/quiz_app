@@ -17,7 +17,7 @@ function fetchQuestions() {
   return dispatch => {
     const name = ''
     dispatch(requestQuestions());
-    return fetch('/api/v1/four_choice_questions')
+    return fetch('/api/v1/questions')
       .then(response => response.json())
       .then(json => dispatch(receiveQuestions(json)));
   };

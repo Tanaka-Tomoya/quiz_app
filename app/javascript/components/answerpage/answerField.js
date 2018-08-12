@@ -23,9 +23,8 @@ class AnswerField extends React.Component {
 	}
 
 	handleModalOpen() {
-		console.log(this.props.question.item.answer)
 		this.setState({showModal: true});
-		if(this.props.answer.values.answer === this.props.question.item.answer) {
+		if(this.props.answer.values.answer === this.props.question.answer) {
 			this.setState({isCorrectAnswer: true})
 		}
 		console.log(this.state)
@@ -36,25 +35,32 @@ class AnswerField extends React.Component {
 	}
 
 	render() {
+		const { questionLength } = this.props
+		const { id } = this.props.question
+		const { questionId } = this.props
+		const { questionsId } = this.props
+		const questionNumber = Number(questionId)
+		console.log(questionNumber)
+		console.log(questionLength)
+		console.log(this.props.question.id)
 		if (this.props.answer !== undefined) {
-			console.log(this.state)
 		}
 		return (
 			<Container>
 				<Title>
 					<UserIcon src={logo} alt=""/><span>UserName</span><Date>2018/07/20</Date>
 					<TitleValue variant="display3" color="inherit" style={{fontWeight: 600,fontSize:'42px',color:'#333333'}}>
-						Q.{this.props.question.item.title}
+						Q.{this.props.title}
 					</TitleValue>
 				</Title>
 				<Content>
 					<QuestionValue variant="display2"></QuestionValue>
 						<FormControl>
 							<Choices name="answer" component={RadioControl}>
-								<Choice value="a" control={<Radio />} label={<span style={{fontSize: '30px'}}>1.{this.props.question.item.a}</span>}/>
-								<Choice value="b" control={<Radio />} label={<span style={{fontSize: '30px'}}>2.{this.props.question.item.b}</span>}/>
-								<Choice value="c" control={<Radio />} label={<span style={{fontSize: '30px'}}>3.{this.props.question.item.c}</span>}/>
-								<Choice value="d" control={<Radio />} label={<span style={{fontSize: '30px'}}>4.{this.props.question.item.d}</span>}/>
+								<Choice value="a" control={<Radio />} label={<span style={{fontSize: '30px'}}>1.{this.props.question.a}</span>}/>
+								<Choice value="b" control={<Radio />} label={<span style={{fontSize: '30px'}}>2.{this.props.question.b}</span>}/>
+								<Choice value="c" control={<Radio />} label={<span style={{fontSize: '30px'}}>3.{this.props.question.c}</span>}/>
+								<Choice value="d" control={<Radio />} label={<span style={{fontSize: '30px'}}>4.{this.props.question.d}</span>}/>
 							</Choices>
 						</FormControl>
 				</Content>
@@ -70,12 +76,15 @@ class AnswerField extends React.Component {
 						:
 						<Result>
 							<div>不正解です</div>
-							<div>正解は{this.props.question.item.answer}です</div>
+							<div>正解は{this.props.question.answer}です</div>
 						</Result>
 					}
 					<CloseButton>
-						<Button color="primary" size="large" variant="contained" onClick={this.handleModalClose}>閉じる</Button>
+					{questionLength !== id ?
+						<Button href={`/answer/${questionsId}/${questionNumber + 1}`} color="primary" size="large"　variant="contained">次へ</Button>
+						:
 						<Button href="/" color="primary" size="large"　variant="contained">一覧に戻る</Button>
+					}
 					</CloseButton>
 				</Modal>
 				<AnswerButton>
