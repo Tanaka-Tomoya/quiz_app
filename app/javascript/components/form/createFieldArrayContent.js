@@ -22,7 +22,7 @@ export default class CreateFieldArrayContent extends React.Component {
 			{ tabValue === value &&
 				<div key={value}>
 					<Label variant="headline">問題#{value + 1}</Label>
-					<Field name={`${question}.question`} type="text" component={Text} label="Question"/>
+					<Field name={`${question}.question_title`} type="text" component={Text} label="Question"/>
 					<Label variant="headline">選択肢</Label>
 					<Field name={`${question}.a`} type="text" component={Text} label="A"/>
 					<Field name={`${question}.b`} type="text" component={Text} label="B"/>

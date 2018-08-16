@@ -1,5 +1,9 @@
 class CreateQuestions < ActiveRecord::Migration[5.1]
   def change
-    add_column :questions, :title, :string 
+    create_table :questions do |t|
+      t.string :title, default: 'title'
+      t.integer :user_id
+      t.timestamps
+    end
   end
 end

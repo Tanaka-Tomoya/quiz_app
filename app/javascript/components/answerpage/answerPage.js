@@ -21,14 +21,15 @@ export default class AnswerPage extends React.Component {
 		const { isAuthenticated } = auth
 		const { four_choice_questions } = this.props.answerItem.item
 		const { title } = this.props.answerItem.item
-		const questionId = this.props.match.params.questionId
+		const { correct_answer_count } = this.props.answerItem.item
+		const questionsElementId = this.props.match.params.questionsElementId
 		const questionsId = this.props.match.params.questionsId
     if ( localStorage.client && localStorage.accessToken && localStorage.uid && isAuthenticated ) {
 			return (
 				<Grid container justify='center' style={{height: '800px'}}>
 					<Container  item xs={8}>
 					{four_choice_questions ?
-						<AnswerField title={title} questionsId={questionsId} questionId={questionId} questionLength={four_choice_questions.length} question={four_choice_questions[questionId]} answer={this.props.form.AnswerField}/>
+						<AnswerField count={correct_answer_count} title={title} questionsId={questionsId} questionsElementId={questionsElementId} questionLength={four_choice_questions.length} question={four_choice_questions[questionsElementId]} answer={this.props.form.AnswerField}/>
 						:
 						<div>undefined</div>
 						}

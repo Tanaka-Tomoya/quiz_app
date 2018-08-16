@@ -10,23 +10,25 @@ function postQuestionTitle() {
 }
 
 export function createQuestion(questions) {
-    const obj = questions;
-    const method = "POST";
-    const body = JSON.stringify(obj);
-    const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    };
-    fetch("/api/v1/four_choice_questions",{method, headers, body})
-    return dispatch => {
-      dispatch(postQuestion());
-    }
+  const obj = {four_choice_question: questions}
+  const method = "POST";
+  const body = JSON.stringify(obj);
+  console.log(body)
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  };
+  fetch("/api/v1/four_choice_questions",{method, headers, body})
+  return dispatch => {
+    dispatch(postQuestion());
+  }
 }
 
 export function createQuestionTitle(title) {
-  const obj = title;
+  const obj = { title: title }
   const method = "POST";
   const body = JSON.stringify(obj);
+  console.log(body)
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'

@@ -12,10 +12,10 @@ export default class Create extends React.Component {
     const questions = values.questions
     const title = values.title
     async function submit() {
+      await props.createQuestionTitle(title);
       await questions.forEach( (questions) => {
          props.createQuestion(questions);
       })
-      await props.createQuestionTitle(title);
       props.history.push('/');
     }
     console.log(values)

@@ -29,7 +29,7 @@ class Api::V1::QuestionsController < ApplicationController
 	private
 
 	def question_params
-		params.permit(:title, :user_id)
+		params.require(:question).permit(:title, :user_id)
 	end
 
 	def set_question

@@ -8,31 +8,34 @@ class Api::V1::FourChoiceQuestionsController < ApplicationController
   end
 
   def create
-    @four_choice_question = FourChoiceQuestion.create!(four_choice_question_params)
-    render json: @four_choice_question
+    @four_choice = FourChoiceQuestion.create!(four_choice_question_params)
+		parent_question = Question.order(created_at: :desc).first
+		id = parent_question.id
+		@four_choice.update_attributes(question_id: id )
+    render json: @four_choice
   end
 
   def show
-    render json: @four_choice_question
+    render json: @four_choice
   end
 
   def update
-    @four_choice_question.update(four_choice_question_params)
-    render json: @four_choice_question
+    @four_choice.update(four_choice_question_params)
+    render json: @four_choice
   end
 
   def destroy
-    @four_choice_question.destroy
+    @four_choice.destroy
     head :no_content
   end
 
   private
 
   def four_choice_question_params
-    params.permit(:a, :b, :c, :d, :answer, :question, :question_id)
+    params.require(:four_choice_question).permit(:a, :b, :c, :d, :answer, :question_title, :question_id)
   end
 
   def set_four_choice_question
-    @four_choice_question = FourChoiceQuestion.find(params[:id])
+    @four_choice = FourChoiceQuestion.find(params[:id])
   end
 end

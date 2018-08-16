@@ -16,7 +16,7 @@ class AnswerField extends React.Component {
 		super(props);
 		this.state = {
 			isCorrectAnswer: false,
-			showModal: false
+			showModal: false,
 		};
 		this.handleModalOpen = this.handleModalOpen.bind(this);
 		this.handleModalClose = this.handleModalClose.bind(this);
@@ -24,8 +24,13 @@ class AnswerField extends React.Component {
 
 	handleModalOpen() {
 		this.setState({showModal: true});
+		const { questionsId } = this.props
+		console.log(this.props)
+		const { count } = this.props
 		if(this.props.answer.values.answer === this.props.question.answer) {
-			this.setState({isCorrectAnswer: true})
+			this.setState({isCorrectAnswer: true}),
+			this.props.countCorrectAnswer(count, questionsId)
+			console.log(this.state.correctAnswerCount)
 		}
 		console.log(this.state)
 	}
@@ -37,9 +42,9 @@ class AnswerField extends React.Component {
 	render() {
 		const { questionLength } = this.props
 		const { id } = this.props.question
-		const { questionId } = this.props
+		const { questionsElementId } = this.props
 		const { questionsId } = this.props
-		const questionNumber = Number(questionId)
+		const questionNumber = Number(questionsElementId)
 		console.log(questionNumber)
 		console.log(questionLength)
 		console.log(this.props.question.id)
@@ -83,7 +88,7 @@ class AnswerField extends React.Component {
 					{questionLength !== id ?
 						<Button href={`/answer/${questionsId}/${questionNumber + 1}`} color="primary" size="large"　variant="contained">次へ</Button>
 						:
-						<Button href="/" color="primary" size="large"　variant="contained">一覧に戻る</Button>
+						<Button href={`/answer/${questionsId}/result`} color="primary" size="large"　variant="contained">結果へ</Button>
 					}
 					</CloseButton>
 				</Modal>

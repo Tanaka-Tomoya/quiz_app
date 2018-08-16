@@ -1,0 +1,5 @@
+class AddQuestionToFourChoiceQuestions < ActiveRecord::Migration[5.1]
+  def change
+    add_column :four_choice_questions, :question_title, :string
+  end
+end

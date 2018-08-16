@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+テーブル名とカラム名は同じものを使わない（アソシエーションの際に問題が発生する）

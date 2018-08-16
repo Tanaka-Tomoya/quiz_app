@@ -33,9 +33,7 @@ class Form extends React.Component {
   }
 }
 export default reduxForm({
-  form: 'Form',
-  validate,
-  asyncValidate
+  form: 'Form'
 })(Form)
 
 const Container = styled.div `
